@@ -1,4 +1,4 @@
-# Tradingview_pine_scripts
+# Tradingview pine scripts
 
 My customized TradingView Pine Scripts Repository
 
