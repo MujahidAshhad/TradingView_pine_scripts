@@ -1,0 +1,122 @@
+//@version=4
+study(title="Supply and Demand Zones",shorttitle="Supply / Demand",overlay=true)
+
+//Daily zones
+daily = input(title = "Daily",type = input.bool,defval=true)
+dopen = security(syminfo.tickerid,'D',open,barmerge.gaps_off,barmerge.lookahead_on)
+dayrange=(high-low)
+dcol = color.red
+
+r1 = security(syminfo.tickerid,'D',dayrange)
+r2 = security(syminfo.tickerid, 'D', dayrange[1]) 
+r3 = security(syminfo.tickerid, 'D', dayrange[2])
+r4= security(syminfo.tickerid, 'D', dayrange[3])
+r5= security(syminfo.tickerid, 'D', dayrange[4])
+r6 = security(syminfo.tickerid, 'D', dayrange[5]) 
+r7 = security(syminfo.tickerid, 'D', dayrange[6]) 
+r8 = security(syminfo.tickerid, 'D', dayrange[7]) 
+r9= security(syminfo.tickerid, 'D', dayrange[8])
+r10= security(syminfo.tickerid, 'D', dayrange[9])
+
+adr_10 = (r1+r2+r3+r4+r5+r6+r7+r8+r9+r10) /10
+adr_9 = (r1+r2+r3+r4+r5+r6+r7+r8+r9) /9
+adr_8 = (r1+r2+r3+r4+r5+r6+r7+r8) /8
+adr_7 = (r1+r2+r3+r4+r5+r6+r7) /7
+adr_6 = (r1+r2+r3+r4+r5+r6) /6
+adr_5 = (r1+r2+r3+r4+r5) /5
+adr_4 = (r1+r2+r3+r4) /4
+adr_3 = (r1+r2+r3) /3
+adr_2= (r1+r2)/2
+adr_1 = r1
+
+adrhigh10 = dopen+(adr_10/2)
+adrhigh5 = dopen+(adr_5/2)
+adrlow5 = dopen-(adr_5/2)
+adrlow10 = dopen-(adr_10/2)
+
+dayh5 = plot( daily? adrhigh5 : na, color = dcol)
+dayh10 = plot( daily? adrhigh10 : na, color = dcol)
+dayl5 = plot( daily? adrlow5 : na, color = dcol)
+dayl10 = plot( daily? adrlow10 : na, color = dcol)
+fill(dayh5,dayh10 , color=dcol)
+fill(dayl5,dayl10,color=dcol)
+
+//Weekly zones
+weekly = input(title = "Weekly",type = input.bool,defval=true)
+wopen = security(syminfo.tickerid,'W',open,barmerge.gaps_off,barmerge.lookahead_on)
+weekrange=(high-low)
+wcol = color.blue
+
+wr1 = security(syminfo.tickerid,'W',weekrange)
+wr2 = security(syminfo.tickerid, 'W', weekrange[1]) 
+wr3 = security(syminfo.tickerid, 'W', weekrange[2])
+wr4= security(syminfo.tickerid, 'W', weekrange[3])
+wr5= security(syminfo.tickerid, 'W', weekrange[4])
+wr6 = security(syminfo.tickerid, 'W', weekrange[5]) 
+wr7 = security(syminfo.tickerid, 'W', weekrange[6]) 
+wr8 = security(syminfo.tickerid, 'W', weekrange[7]) 
+wr9= security(syminfo.tickerid, 'W', weekrange[8])
+wr10= security(syminfo.tickerid, 'W', weekrange[9])
+
+awr_10 = (wr1+wr2+wr3+wr4+wr5+wr6+wr7+wr8+wr9+wr10) /10
+awr_9 = (wr1+wr2+wr3+wr4+wr5+wr6+wr7+wr8+wr9) /9
+awr_8 = (wr1+wr2+wr3+wr4+wr5+wr6+wr7+wr8) /8
+awr_7 = (wr1+wr2+wr3+wr4+wr5+wr6+wr7) /7
+awr_6 = (wr1+wr2+wr3+wr4+wr5+wr6) /6
+awr_5 = (wr1+wr2+wr3+wr4+wr5) /5
+awr_4 = (wr1+wr2+wr3+wr4) /4
+awr_3 = (wr1+wr2+wr3) /3
+awr_2= (wr1+wr2)/2
+awr_1 = wr1
+
+awrhigh10 = wopen+(awr_10/2)
+awrhigh5 = wopen+(awr_5/2)
+awrlow5 = wopen-(awr_5/2)
+awrlow10 = wopen-(awr_10/2)
+
+weekh5 = plot( weekly? awrhigh5 : na, color = wcol)
+weekh10 = plot( weekly? awrhigh10 : na, color = wcol)
+weekl5 = plot( weekly? awrlow5 : na, color = wcol)
+weekl10 = plot( weekly? awrlow10 : na, color = wcol)
+fill(weekh5,weekh10,color=wcol)
+fill(weekl5,weekl10,color=wcol)
+
+//Monthly zones
+monthly = input(title = "Monthly",type = input.bool,defval=true)
+mopen = security(syminfo.tickerid,'M',open,barmerge.gaps_off,barmerge.lookahead_on)
+monthrange=(high-low)
+mcol = color.green
+
+mr1 = security(syminfo.tickerid,'M',monthrange)
+mr2 = security(syminfo.tickerid, 'M', monthrange[1]) 
+mr3 = security(syminfo.tickerid, 'M', monthrange[2])
+mr4= security(syminfo.tickerid, 'M', monthrange[3])
+mr5= security(syminfo.tickerid, 'M', monthrange[4])
+mr6 = security(syminfo.tickerid, 'M', monthrange[5]) 
+mr7 = security(syminfo.tickerid, 'M', monthrange[6]) 
+mr8 = security(syminfo.tickerid, 'M', monthrange[7]) 
+mr9= security(syminfo.tickerid, 'M', monthrange[8])
+mr10= security(syminfo.tickerid, 'M', monthrange[9])
+
+amr_10 = (mr1+mr2+mr3+mr4+mr5+mr6+mr7+mr8+mr9+mr10) /10
+amr_9 = (mr1+mr2+mr3+mr4+mr5+mr6+mr7+mr8+mr9) /9
+amr_8 = (mr1+mr2+mr3+mr4+mr5+mr6+mr7+mr8) /8
+amr_7 = (mr1+mr2+mr3+mr4+mr5+mr6+mr7) /7
+amr_6 = (mr1+mr2+mr3+mr4+mr5+mr6) /6
+amr_5 = (mr1+mr2+mr3+mr4+mr5) /5
+amr_4 = (mr1+mr2+mr3+mr4) /4
+amr_3 = (mr1+mr2+mr3) /3
+amr_2= (mr1+mr2)/2
+amr_1 = mr1
+
+amrhigh10 = mopen+(amr_10/2)
+amrhigh5 = mopen+(amr_5/2)
+amrlom5 = mopen-(amr_5/2)
+amrlom10 = mopen-(amr_10/2)
+
+monthh5 = plot( monthly? amrhigh5 : na, color = mcol)
+monthh10 = plot( monthly? amrhigh10 : na, color = mcol)
+monthl5 = plot( monthly? amrlom5 : na, color = mcol)
+monthl10 = plot( monthly? amrlom10 : na, color = mcol)
+fill(monthh5,monthh10,color=mcol)
+fill(monthl5,monthl10,color=mcol)
